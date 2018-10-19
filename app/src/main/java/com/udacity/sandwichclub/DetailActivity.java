@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView ingredientsIv = findViewById(R.id.image_iv);
+
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -43,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -56,7 +60,49 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+
+    private void populateUI(Sandwich sandwich) {
+
+        //TextView test_tv = findViewById(R.id.test_tv);
+        //test_tv.setText(sandwich.getDescription());
+
+        //description
+        TextView description = findViewById(R.id.description_tv);
+        description.setText(sandwich.getDescription());
+
+        //place of origin
+        TextView origin = findViewById(R.id.origin_tv);
+        if(sandwich.getPlaceOfOrigin() == null || sandwich.getPlaceOfOrigin().equals("")){
+            origin.setText("Unknown");
+        } else {
+            origin.setText(sandwich.getPlaceOfOrigin());
+        }
+        //also known as
+        TextView aka = findViewById(R.id.also_known_tv);
+        if (sandwich.getAlsoKnownAs() != null){
+            ArrayList<String> akaList = (ArrayList<String>)sandwich.getAlsoKnownAs();
+            for (String x : akaList){
+                aka.append(x);
+            }
+        }  else {
+            aka.append("n/a");
+
+        }
+        TextView ingredients = findViewById(R.id.ingredients_tv);
+        if (sandwich.getIngredients() != null) {
+            ArrayList<String> ingredientsList = (ArrayList<String>) sandwich.getIngredients();
+            for (int i=0; i < ingredientsList.size(); i++) {
+                ingredients.append(ingredientsList.get(i));
+                if (i+1 != ingredientsList.size()){
+                    ingredients.append(", ");
+                } else {
+                    ingredients.append(".");
+                }
+            }
+
+        } else {
+            ingredients.append("no ing");
+        }
 
     }
 }

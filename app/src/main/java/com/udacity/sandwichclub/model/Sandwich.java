@@ -15,6 +15,7 @@ public class Sandwich {
      * No args constructor for use in serialization
      */
     public Sandwich() {
+        this.description = "it caught the exception";
     }
 
     public Sandwich(String mainName, List<String> alsoKnownAs, String placeOfOrigin, String description, String image, List<String> ingredients) {
@@ -37,6 +38,7 @@ public class Sandwich {
     public List<String> getAlsoKnownAs() {
         return alsoKnownAs;
     }
+
 
     public void setAlsoKnownAs(List<String> alsoKnownAs) {
         this.alsoKnownAs = alsoKnownAs;
@@ -74,3 +76,5 @@ public class Sandwich {
         this.ingredients = ingredients;
     }
 }
+
+
