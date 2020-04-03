@@ -1,5 +1,3 @@
 
-This is my solution to the Sandwich Club Project in the Android Developer Nanodegree by Udacity. I'm using github to submit my projects to Udacity.
-
-[Sandwich Club app starter code.](https://github.com/udacity/sandwich-club-starter-code)
+This is a simple app I built during the Android Development Nanodegree Course from Udacity. This project was great for learning how to create and navigate between views in an Android app! 
 
